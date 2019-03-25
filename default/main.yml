@@ -1,0 +1,22 @@
+---
+
+fail2ban_firewalld_disable: yes
+fail2ban_ignoreips:
+  - 127.0.0.1/8
+
+# This is what the action does with rules.
+# This can be any jump target as per the iptables man page (section 8).
+# Common values are: DROP, REJECT, REJECT --reject-with icmp-port-unreachable
+fail2ban_iptables_blocktype: DROP
+
+fail2ban:
+  DEFAULT:
+    bantime: 3600
+    ignoreip: "{{ fail2ban_ignoreips | join(' ') }}"
+  ssh-iptables:
+    enabled: true
+    filter: sshd
+    logpath: "%(sshd_log)s"
+    action: iptables-ipset-proto4[name=SSH, port=ssh, protocol=tcp]
+            #sendmail-whois[name=SSH, dest=user@domain.local, sender=fail2ban@domain.local]
+    maxretry: 3

@@ -1,0 +1,9 @@
+{{ ansible_managed | comment(decoration="#") }}
+
+{% for section in fail2ban | default({}) %}
+[{{ section }}]
+{% for option in fail2ban[section] %}
+{{ option }} = {{ fail2ban[section][option] }}
+{% endfor %}
+
+{% endfor %}

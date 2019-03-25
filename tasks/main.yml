@@ -1,0 +1,13 @@
+---
+- name: Include install tasks
+  include: install.yml
+
+- name: Include config tasks
+  include: config.yml
+
+- name: Enable and start fail2ban service
+  systemd:
+    name: fail2ban
+    state: started
+    enabled: yes
+    daemon_reload: yes

@@ -1,0 +1,23 @@
+---
+
+- name: Install required packages
+  yum:
+    state: present
+    name:
+      - epel-release
+
+- name: Install packages
+  yum:
+    state: present
+    name:
+      - fail2ban
+      - ipset
+      - iptables-services
+
+- name: Stop and disable firewalld if required
+  systemd:
+    name: firewalld
+    state: stopped
+    masked: yes
+    enabled: no
+  when: fail2ban_firewalld_disable

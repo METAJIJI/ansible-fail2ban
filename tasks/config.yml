@@ -1,0 +1,43 @@
+---
+
+- name: Configuring fail2ban
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0640
+    force: yes
+  notify:
+    - restart fail2ban
+  loop:
+    - src: etc/fail2ban/jail.local.j2
+      dest: /etc/fail2ban/jail.local
+    - src: etc/fail2ban/action.d/iptables-blocktype.local.j2
+      dest: etc/fail2ban/action.d/iptables-blocktype.local
+
+- name: Create directory /etc/systemd/system/fail2ban.service.d
+  file:
+    path: /etc/systemd/system/fail2ban.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Configuring systemd fail2ban unit as part of iptables service
+  template:
+    src: etc/systemd/system/fail2ban.service.d/iptables.conf.j2
+    dest: /etc/systemd/system/fail2ban.service.d/iptables.conf
+    owner: root
+    group: root
+    mode: 0640
+    force: yes
+  notify:
+    - restart fail2ban
+    - reload systemd
+#  register: fail2ban_iptables_override
+#
+#- name: Reload systemd if fail2ban.service.d/iptables.conf is changed
+#  systemd:
+#    daemon_reload: yes
+#  when: fail2ban_iptables_override.changed

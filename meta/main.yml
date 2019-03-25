@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Denis Kadyshev
+  description: Install/Configure fail2ban
+  min_ansible_version: 2.7
+  license: WTFPL
+  platforms:
+    - name: Centos
+      versions:
+        - All
+  galaxy_tags:
+    - security
+    - iptables
+    - firewall
+
+dependencies: []
