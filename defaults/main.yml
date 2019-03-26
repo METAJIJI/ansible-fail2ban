@@ -20,3 +20,4 @@ fail2ban:
     action: iptables-ipset-proto4[name=SSH, port=ssh, protocol=tcp]
             #sendmail-whois[name=SSH, dest=user@domain.local, sender=fail2ban@domain.local]
     maxretry: 3
+    backend: systemd
