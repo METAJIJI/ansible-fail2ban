@@ -20,4 +20,4 @@
     state: stopped
     masked: yes
     enabled: no
-  when: fail2ban_firewalld_disable
+  when: fail2ban_firewalld_disable | bool
