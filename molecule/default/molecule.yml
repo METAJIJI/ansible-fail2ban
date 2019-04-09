@@ -10,7 +10,7 @@ platforms:
     stop_signal: "SIGRTMIN+3"
     privileged: true
     capabilities:
-      - SYS_ADMIN
+      - SYS_ADMIN  # For systemd
 provisioner:
   name: ansible
   log: True
