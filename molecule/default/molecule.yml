@@ -8,7 +8,7 @@ platforms:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /usr/sbin/init
     stop_signal: "SIGRTMIN+3"
-    privileged: false
+    privileged: true
     capabilities:
       - SYS_ADMIN
 provisioner:
