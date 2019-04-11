@@ -2,8 +2,8 @@
 
 - name: Configuring fail2ban
   template:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: "{{ item.src }}.j2"
+    dest: "/{{ item.dest }}"
     owner: root
     group: root
     mode: 0640
@@ -11,10 +11,8 @@
   notify:
     - restart fail2ban
   loop:
-    - src: etc/fail2ban/jail.local.j2
-      dest: /etc/fail2ban/jail.local
-    - src: etc/fail2ban/action.d/iptables-blocktype.local.j2
-      dest: etc/fail2ban/action.d/iptables-blocktype.local
+    - etc/fail2ban/jail.local
+    - etc/fail2ban/action.d/iptables-blocktype.local
 
 - name: Create directory /etc/systemd/system/fail2ban.service.d
   file:
