@@ -2,8 +2,8 @@
 
 - name: Configuring fail2ban
   template:
-    src: "{{ item.src }}.j2"
-    dest: "/{{ item.dest }}"
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
     owner: root
     group: root
     mode: 0640
