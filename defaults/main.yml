@@ -21,3 +21,11 @@ fail2ban:
             #sendmail-whois[name=SSH, dest=user@domain.local, sender=fail2ban@domain.local]
     maxretry: 3
     backend: systemd
+
+fail2ban_required_packages:
+  - epel-release
+
+fail2ban_packages:
+  - fail2ban
+  - ipset
+  - iptables-services

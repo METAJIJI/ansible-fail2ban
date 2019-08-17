@@ -3,16 +3,12 @@
 - name: Install required packages
   yum:
     state: present
-    name:
-      - epel-release
+    name: "{{ fail2ban_required_packages }}"
 
 - name: Install packages
   yum:
     state: present
-    name:
-      - fail2ban
-      - ipset
-      - iptables-services
+    name: "{{ fail2ban_packages }}"
 
 - name: Stop and disable firewalld if required
   systemd:
