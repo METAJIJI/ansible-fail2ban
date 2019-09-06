@@ -28,7 +28,7 @@
     dest: /etc/systemd/system/fail2ban.service.d/iptables.conf
     owner: root
     group: root
-    mode: 0640
+    mode: 0644
     force: yes
   notify:
     - restart fail2ban
