@@ -14,7 +14,7 @@ fail2ban:
     bantime: 3600
     ignoreip: "{{ fail2ban_ignoreips | join(' ') }}"
   ssh-iptables:
-    enabled: true
+    enabled: 'true'
     filter: sshd
     logpath: "%(sshd_log)s"
     action: iptables-ipset-proto4[name=SSH, port=ssh, protocol=tcp]
